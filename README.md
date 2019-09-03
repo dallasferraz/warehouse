@@ -48,7 +48,7 @@ GO
 
 CREATE TRIGGER tgr_new_record
 ON dbo.inventory
-FOR INSERT
+FOR UPDATE
 AS
 	DECLARE @idSKU INT
 	DECLARE @quantityBefore INT
