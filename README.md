@@ -50,6 +50,7 @@ CREATE TRIGGER tgr_new_record
 ON dbo.inventory
 FOR UPDATE
 AS
+	DECLARE @idRecord INT
 	DECLARE @idSKU INT
 	DECLARE @quantityBefore INT
 	DECLARE @quantityAfter INT
@@ -57,6 +58,7 @@ AS
 	DECLARE @timestamp DATETIME
 	DECLARE @employee VARCHAR(50)
 
+	SELECT @idRecord = COUNT(*) FROM records
 	SELECT @idSKU = idSKU FROM inserted
 	SELECT @quantityBefore = quantity FROM deleted
 	SELECT @quantityAfter = quantity FROM inserted
@@ -72,9 +74,10 @@ AS
 		END
 	SET @timestamp = GETDATE()
 	SET @employee = SUSER_NAME()
+	SET @idRecord = @idRecord + 1
 
-	INSERT INTO records(idSKU,quantity_before,quantity_after,operation_type,"timestamp",employee) VALUES
-	(@idSKU,@quantityBefore,@quantityAfter,@operationType,@timestamp,@employee)
+	INSERT INTO records(idRecord,idSKU,quantity_before,quantity_after,operation_type,"timestamp",employee) VALUES
+	(@idRecord,@idSKU,@quantityBefore,@quantityAfter,@operationType,@timestamp,@employee)
 
 	PRINT 'Records up to date.'
 GO
