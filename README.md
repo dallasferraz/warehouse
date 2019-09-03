@@ -3,7 +3,7 @@ Fictitious simplified SQL server database. Trigger for keeping records of invent
 
 In this database, everything was simplified to the extremes: there is only one group, the tables have no relationships and the dummy data is really easy to grasp just by looking at it. The tables are represented in the diagram below:
 
-![model](https://raw.githubusercontent.com/dallasferraz/retail_shop/master/model.png)
+![model](https://raw.githubusercontent.com/dallasferraz/warehouse/master/model.png)
 
 After creating the tables the chunk of code below is responsible for feeding them some content, just so the trigger developed for future records is implemented in a context:
 
@@ -38,7 +38,7 @@ GO
 
 So the tables now hold some information as shown below:
 
-![tablecontents](https://raw.githubusercontent.com/dallasferraz/retail_shop/master/tablecontents.png)
+![tablecontents](https://raw.githubusercontent.com/dallasferraz/warehouse/master/tablecontents.png)
 
 Now a trigger can be responsible for keeping up with the modifications in the inventory table, just as shown before. It can do so by automatically keeping records of modifications in the inventory table, whenever an employee retrieves or replenishes the SKU stock units. The chunk of code below displays how this trigger works:
 
